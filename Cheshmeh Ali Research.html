@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheshmeh Ali Archaeological Research Project | Official Research Platform</title>
+    <meta name="description" content="Official platform for documentation and dissemination of Cheshmeh Ali archaeological excavations - Type site for the Transitional Chalcolithic period of the Iranian Central Plateau">
+    <style>
+        :root {
+            --color-ochre: #C4A661;
+            --color-ochre-dark: #9B7F3F;
+            --color-cream: #F5F0E8;
+            --color-cream-light: #FDFCFA;
+            --color-stone: #6B6B5E;
+            --color-stone-dark: #4A4A40;
+            --color-earth: #8B7355;
+            --color-text: #2C2922;
+            --color-border: rgba(107, 107, 94, 0.2);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Merriweather', 'Georgia', serif;
+            line-height: 1.7;
+            color: var(--color-text);
+            background: var(--color-cream-light);
+        }
+
+        /* Header */
+        header {
+            background: var(--color-cream);
+            border-bottom: 3px solid var(--color-ochre);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header-top {
+            background: var(--color-stone-dark);
+            color: var(--color-cream-light);
+            padding: 0.5rem 2rem;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .lang-switch a {
+            color: var(--color-cream-light);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .lang-switch a:hover,
+        .lang-switch a.active {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        /* RTL Support */
+        body[dir="rtl"] {
+            font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+        }
+
+        body[dir="rtl"] .header-main,
+        body[dir="rtl"] .site-title,
+        body[dir="rtl"] nav,
+        body[dir="rtl"] .cards-grid,
+        body[dir="rtl"] .timeline-item,
+        body[dir="rtl"] .footer-content {
+            direction: rtl;
+        }
+
+        body[dir="rtl"] .highlight-box {
+            border-left: none;
+            border-right: 4px solid var(--color-ochre);
+        }
+
+        body[dir="rtl"] .highlight-box li {
+            padding-left: 0;
+            padding-right: 1.5rem;
+        }
+
+        body[dir="rtl"] .highlight-box li::before {
+            left: auto;
+            right: 0;
+        }
+
+        body[dir="rtl"] .timeline::before {
+            left: auto;
+            right: 50%;
+        }
+
+        body[dir="rtl"] .timeline-dot {
+            left: auto;
+            right: 50%;
+        }
+
+        @media (max-width: 768px) {
+            body[dir="rtl"] .timeline::before {
+                right: 20px;
+                left: auto;
+            }
+
+            body[dir="rtl"] .timeline-dot {
+                right: 20px;
+                left: auto;
+            }
+
+            body[dir="rtl"] .timeline-item,
+            body[dir="rtl"] .timeline-item:nth-child(even) {
+                padding-right: 50px;
+                padding-left: 0;
+            }
+        }
+
+        .header-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-title {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .site-logo {
+            width: 60px;
+            height: 60px;
+            background: var(--color-ochre);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--color-cream-light);
+            font-weight: bold;
+        }
+
+        .site-title-text h1 {
+            font-size: 1.5rem;
+            color: var(--color-stone-dark);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .site-subtitle {
+            font-size: 0.9rem;
+            color: var(--color-stone);
+            font-style: italic;
+            margin-top: 0.25rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--color-stone-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--color-ochre-dark);
+            border-bottom-color: var(--color-ochre);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 70vh;
+            max-height: 600px;
+            background: linear-gradient(rgba(44, 41, 34, 0.5), rgba(44, 41, 34, 0.7)),
+                        url('https://pplx-res.cloudinary.com/image/upload/v1770208843/search_images/8dced7ddf42bed52f1cc9908a3afdc8cd54b472f.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-cream-light);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            padding: 2rem;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .hero-meta {
+            font-size: 1rem;
+            opacity: 0.85;
+            font-style: italic;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--color-stone-dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--color-ochre);
+        }
+
+        .section-intro {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: var(--color-stone);
+            line-height: 1.8;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: var(--color-cream);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 220px;
+            background: var(--color-earth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-cream-light);
+            font-size: 3rem;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            color: var(--color-stone-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .card p {
+            color: var(--color-stone);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-meta {
+            font-size: 0.85rem;
+            color: var(--color-ochre-dark);
+            font-style: italic;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--color-ochre);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: var(--color-cream);
+            padding: 1.5rem;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .timeline-year {
+            font-size: 1.8rem;
+            color: var(--color-ochre-dark);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.2rem;
+            color: var(--color-stone-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--color-ochre);
+            border: 3px solid var(--color-cream-light);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Research Highlights */
+        .highlight-box {
+            background: var(--color-cream);
+            border-left: 4px solid var(--color-ochre);
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .highlight-box h3 {
+            color: var(--color-stone-dark);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .highlight-box li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+
+        .highlight-box li::before {
+            content: '▪';
+            position: absolute;
+            left: 0;
+            color: var(--color-ochre);
+            font-size: 1.2rem;
+        }
+
+        /* Citation Box */
+        .citation-box {
+            background: var(--color-stone-dark);
+            color: var(--color-cream-light);
+            padding: 1.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-stone-dark);
+            color: var(--color-cream-light);
+            padding: 3rem 2rem 1.5rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--color-ochre);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--color-cream-light);
+            text-decoration: none;
+            opacity: 0.85;
+            transition: opacity 0.3s;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(245, 240, 232, 0.2);
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--color-ochre);
+            color: var(--color-cream-light);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--color-ochre-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--color-ochre);
+            color: var(--color-ochre-dark);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-ochre);
+            color: var(--color-cream-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-main {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: column;
+                padding-left: 50px;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Notice Banner */
+        .notice {
+            background: rgba(196, 166, 97, 0.1);
+            border: 1px solid var(--color-ochre);
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .notice strong {
+            color: var(--color-ochre-dark);
+        }
+
+        /* Navigation Menu Toggle for Mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--color-stone-dark);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--color-cream);
+                border-top: 1px solid var(--color-border);
+                padding: 1rem;
+            }
+
+            nav.active {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div>Official Research Platform | چشمه علی | Cheshmeh Ali</div>
+            <div class="lang-switch">
+                <a href="#" class="lang-btn active" data-lang="en">English</a>
+                <a href="#" class="lang-btn" data-lang="fa">فارسی</a>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="site-title">
+                <div class="site-logo">CA</div>
+                <div class="site-title-text">
+                    <h1>Cheshmeh Ali Archaeological Research Project</h1>
+                    <div class="site-subtitle">Type Site | Transitional Chalcolithic | Iranian Central Plateau</div>
+                </div>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <nav id="mainNav">
+                <a href="#about" class="active">About</a>
+                <a href="#excavations">Excavations</a>
+                <a href="#findings">Findings</a>
+                <a href="#publications">Publications</a>
+                <a href="#team">Team</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>8,000 Years of Human Settlement</h2>
+            <p>Documenting the archaeological heritage of Cheshmeh Ali (چشمه علی), Rey, Tehran Province – from Late Neolithic villages to the Transitional Chalcolithic horizon that defines northern Iranian prehistory</p>
+            <div class="hero-meta">35°36'37"N, 51°26'59"E | Shahr-e Rey, District 20, Tehran Province, Iran</div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Notice -->
+        <div class="notice">
+            <strong>Research Notice:</strong> This platform presents verified archaeological data from three major excavation campaigns (1934-1936, 1998, 2024). Site coordinates are generalized for heritage protection. Restricted data access available to qualified researchers upon request.
+        </div>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="section-header">
+                <h2>About Cheshmeh Ali</h2>
+                <p class="section-intro">
+                    Cheshmeh Ali (چشمه علی, "Spring of Ali") is one of the most significant prehistoric archaeological sites on the Iranian Plateau, with continuous and intermittent human occupation spanning approximately 8,000 years (c. 6000 BC to present). The site consists of a 7-meter-high mound covering 3.5 hectares adjacent to a permanent natural spring in the ancient city of Rey, approximately 6-14 km south of modern Tehran.
+                </p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://pplx-res.cloudinary.com/image/upload/v1770208844/search_images/17f1de0e105861ffcfb36114c87536d7c580ee2d.jpg" alt="Cheshmeh Ali painted pottery vessel">
+                    </div>
+                    <div class="card-content">
+                        <h3>Type Site Definition</h3>
+                        <p>Cheshmeh Ali defines the Transitional Chalcolithic period (c. 5500-4800 BC) of the Iranian Central Plateau through its distinctive black-on-red painted pottery tradition distributed across northern Iran from Qazvin to Gorgan.</p>
+                        <div class="card-meta">McCown 1942; Voigt & Dyson 1992</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://pplx-res.cloudinary.com/image/upload/v1770208843/search_images/95f0b1723eb055a6751ded5627e6f8d3f9b2da6f.jpg" alt="Cheshmeh Ali site with rock sculpture">
+                    </div>
+                    <div class="card-content">
+                        <h3>Geographic Significance</h3>
+                        <p>Located at the base of the Alborz mountain range, Cheshmeh Ali sits on ancient trade routes connecting Caspian coastal regions to the Central Iranian Plateau – part of what would become the Silk Road network.</p>
+                        <div class="card-meta">Tehran Plain Settlement System</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://pplx-res.cloudinary.com/image/upload/v1770236061/search_images/75376a386610846141da1f164ba10d0449203c49.jpg" alt="Fath-Ali Shah relief at Cheshmeh Ali">
+                    </div>
+                    <div class="card-content">
+                        <h3>Sacred Spring</h3>
+                        <p>The site's permanent natural spring has been the lifeblood of settlement for millennia, with continuous sacred associations from prehistoric water worship through Zoroastrian Anahita cult to Islamic veneration.</p>
+                        <div class="card-meta">Cultural Continuity: 6000 BC - Present</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Research Significance</h3>
+                <ul>
+                    <li><strong>Chronological Anchor:</strong> Type site defining Transitional Chalcolithic (Cheshmeh Ali horizon, c. 5500-4800 BC) across northern Iranian Plateau</li>
+                    <li><strong>Exceptional Preservation:</strong> 8,000-year stratigraphic sequence with rich architectural and artifactual deposits</li>
+                    <li><strong>Long-Distance Connectivity:</strong> Obsidian sourcing demonstrates integration into trans-regional networks spanning 1,000+ km</li>
+                    <li><strong>Social Complexity:</strong> Evidence for emerging ranked society: craft specialization, long-distance trade, sedentary agricultural economy</li>
+                    <li><strong>Urban Origins:</strong> Part of settlement system leading to emergence of urban civilization on Iranian Plateau</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Excavation History -->
+        <section id="excavations" class="section">
+            <div class="section-header">
+                <h2>Excavation History</h2>
+                <p class="section-intro">
+                    Three major excavation campaigns have investigated Cheshmeh Ali over nearly a century, each contributing crucial data to our understanding of Iranian prehistory. Despite the site's importance, significant publication gaps remain, particularly regarding the foundational Schmidt excavations of the 1930s.
+                </p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">1934-1936</div>
+                        <h4>Erich Schmidt Expeditions</h4>
+                        <p><strong>Institutions:</strong> University of Pennsylvania Museum, Boston Museum of Fine Arts, Oriental Institute (Chicago)</p>
+                        <p><strong>Director:</strong> Erich Friedrich Schmidt (1897-1964)</p>
+                        <p><strong>Area Excavated:</strong> Over 600 square meters</p>
+                        <p><strong>Major Discoveries:</strong> 173 graves documented (32 prehistoric, 124+ Islamic); established stratigraphic pottery sequence; excellent architectural preservation</p>
+                        <p><strong>Publication Status:</strong> <span style="color: #C4A661; font-weight: 600;">UNPUBLISHED</span> – comprehensive final report never released despite 90 years elapsed. Ongoing publication project by Matney, Fazeli, Pittman, Thornton (White Levy Foundation)</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">1998</div>
+                        <h4>Fazeli-Coningham Excavations</h4>
+                        <p><strong>Institutions:</strong> Iranian Cultural Heritage Organization, University of Tehran, University of Bradford (UK)</p>
+                        <p><strong>Principal Investigators:</strong> Hassan Fazeli, Robin A.E. Coningham, Catherine M. Batt</p>
+                        <p><strong>Methodology:</strong> Two trenches (2m x 5m) to 10m depth; systematic radiocarbon sampling</p>
+                        <p><strong>Results:</strong> First absolute dating of site; confirmed 6th-5th millennia BC occupation</p>
+                        <p><strong>Publication:</strong> Fazeli et al. 2004. "Cheshmeh-Ali Revisited: Towards an Absolute Dating." <em>Iran</em> 42:13-23</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <h4>Shahid Beheshti University Excavations</h4>
+                        <p><strong>Institution:</strong> Shahid Beheshti University Archaeological Field Research Center</p>
+                        <p><strong>Project Director:</strong> Professor Hamidreza Valipour (Faculty of Literature and Humanities, Department of Archaeology)</p>
+                        <p><strong>Deputy Director:</strong> Iman Mostafapour</p>
+                        <p><strong>Research Team:</strong> Professors and students from Shahid Beheshti University Department of Archaeology, including Kian Mansouri Jamshidi</p>
+                        <p><strong>Duration:</strong> October 1 - November 20, 2024 (7 weeks, first season)</p>
+                        <p><strong>Program:</strong> Five-year excavation program (2024-2029) established through tripartite agreement between Shahid Beheshti University, Research Institute of Cultural Heritage and Tourism (RICHT), and Cultural Heritage Directorate of Tehran Province</p>
+                        <p><strong>Research Center:</strong> Archaeological Field Research Center established in building adjacent to Tappeh Mil, Rey</p>
+                        <p><strong>Major Discoveries:</strong></p>
+                        <ul style="margin-top: 0.5rem;">
+                            <li><strong>Extensive Sialk III Architecture:</strong> Organized village layout with multiple mudbrick residential structures (c. 4300-4000 BC, approximately 6,000-7,000 years old)</li>
+                            <li><strong>"Reydokht" Burial:</strong> Complete skeleton of teenage female discovered within Sialk III architectural layer, flexed position burial</li>
+                            <li><strong>Dating:</strong> c. 4300 BC based on stratigraphic context and associated pottery from Sialk III phase</li>
+                            <li><strong>Significance:</strong> First scientifically excavated prehistoric burial at Cheshmeh Ali in 26 years (since 1998)</li>
+                            <li><strong>First Modern Excavation:</strong> First archaeological examination of site in nearly three decades using contemporary methods</li>
+                        </ul>
+                        <p><strong>Research Objectives:</strong> Problem-oriented program to study cultural evolution of societies from Neolithic through Chalcolithic on Tehran Plain; understand architectural organization, burial practices, and daily life during transitional periods</p>
+                        <p><strong>Pending Analysis:</strong> Ancient DNA studies, isotopic analysis (diet and mobility), comprehensive radiocarbon dating, detailed architectural documentation, artifact analysis</p>
+                        <p><strong>Bioarchaeology:</strong> Skeletal analysis by Hamed Vahdati Nassab (Tarbiat Modares University) pending RICHT authorization</p>
+                        <p><strong>Publication Status:</strong> Preliminary reports published; comprehensive final report forthcoming</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="citation-box">
+                <strong>Recommended Citation:</strong><br>
+                Cheshmeh Ali Archaeological Research Project. (2026). Excavation history and research timeline. Retrieved from [URL]. DOI: [Forthcoming]
+            </div>
+        </section>
+
+        <!-- Key Findings -->
+        <section id="findings" class="section">
+            <div class="section-header">
+                <h2>Research Findings</h2>
+                <p class="section-intro">
+                    Nearly a century of research has yielded remarkable insights into prehistoric Iranian societies, from Late Neolithic village life through the emergence of social complexity in the Transitional Chalcolithic. Material culture, architecture, and burial practices document 8,000 years of human adaptation and innovation.
+                </p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://pplx-res.cloudinary.com/image/upload/v1770236062/search_images/c81ad49e236c72aef401ec56ce4d693823d3511a.jpg" alt="Bowl decorated with linked ibex horns">
+                    </div>
+                    <div class="card-content">
+                        <h3>Cheshmeh Ali Ware Pottery</h3>
+                        <p><strong>Dating:</strong> c. 5500-4800 BC (Transitional Chalcolithic)</p>
+                        <p><strong>Characteristics:</strong> High-fired black-on-red painted ceramics with geometric designs (chevrons, hatched patterns) and rare animal motifs (ibex, goats)</p>
+                        <p><strong>Production:</strong> Local manufacture (geochemical analysis 2008) with shared stylistic traditions across 500km</p>
+                        <p><strong>Museum Collections:</strong> Metropolitan Museum, LACMA, British Museum, Oriental Institute Chicago, National Museum of Iran</p>
+                        <div class="card-meta">Defining Ceramic Tradition of Northern Iran</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://pplx-res.cloudinary.com/image/upload/v1770236061/search_images/4e98adb3107a4f6694c7a5ebda1be96ba44080f4.jpg" alt="Bowl with cross-hatched decoration from Transitional Chalcolithic">
+                    </div>
+                    <div class="card-content">
+                        <h3>Lithic Technology & Trade</h3>
+                        <p><strong>Obsidian Sources:</strong> XRF analysis (MURR 2021) of 9 artifacts revealed 8 specimens from Turkey and Armenia sources</p>
+                        <p><strong>Distance:</strong> Exchange networks spanning 1,000+ km during Transitional Chalcolithic</p>
+                        <p><strong>Interpretation:</strong> Integration into trans-regional trade systems connecting Iranian Plateau with Anatolian and Caucasian regions</p>
+                        <div class="card-meta">Academia 2021; Schmidt Collection, UPenn Museum</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://cdn-newspaper.irandaily.ir/newspaper/1403/09/04/031c4086846b138c082bd9e589703d53-l.jpg" alt="Reydokht excavation - 2024 archaeological discovery">
+                    </div>
+                    <div class="card-content">
+                        <h3>Architecture & Settlement</h3>
+                        <p><strong>Schmidt Era:</strong> Excellent preservation noted but plans never published</p>
+                        <p><strong>2024 Discovery:</strong> Extensive Sialk III residential architecture (c. 4300-4000 BC) – organized village layout with multiple mudbrick structures</p>
+                        <p><strong>Significance:</strong> First systematic documentation of Chalcolithic domestic architecture at site</p>
+                        <p><strong>Status:</strong> Detailed architectural analysis and publication pending</p>
+                        <div class="card-meta">Valipour & Mostafapour 2024</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://pplx-res.cloudinary.com/image/upload/v1770236061/search_images/f09b6f9e81e2a0aa911a6a8afef06f0e6015983d.jpg" alt="Chalcolithic Cheshmeh Ali period artifacts">
+                    </div>
+                    <div class="card-content">
+                        <h3>Burial Practices & Bioarchaeology</h3>
+                        <p><strong>Schmidt Burials:</strong> 173 total graves (32 prehistoric, 124+ Islamic) – burial data compilation ongoing (Gustavel 2020)</p>
+                        <p><strong>"Reydokht" Discovery (2024):</strong> Female skeleton, flexed position, c. 4300-4000 BC within Sialk III architectural layer</p>
+                        <p><strong>Pending Analysis:</strong> Ancient DNA, isotopic studies (diet, mobility), radiocarbon dating</p>
+                        <p><strong>Significance:</strong> First scientifically excavated prehistoric burial in modern era</p>
+                        <div class="card-meta">Analysis: Hamed Vahdati Nassab, Tarbiat Modares Univ</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Chronological Framework</h3>
+                <ul>
+                    <li><strong>Late Neolithic (6200-5500 BC):</strong> Chaff-tempered ceramics; earliest sedentary occupation</li>
+                    <li><strong>Transitional Chalcolithic (5500-4800 BC):</strong> Type site – Cheshmeh Ali ware; long-distance trade; emerging social complexity</li>
+                    <li><strong>Sialk III (4300-4000 BC):</strong> Organized village architecture; burial practices; domestic activities</li>
+                    <li><strong>Major Abandonment (c. 3000 BC):</strong> Sudden cessation; cause unknown</li>
+                    <li><strong>Late Bronze Age Gap (1900-1500 BC):</strong> No occupation at mound (nearby Rashkan occupied)</li>
+                    <li><strong>Parthian (3rd c BC - 3rd c CE):</strong> Major reoccupation; defensive wall; Anahita temple</li>
+                    <li><strong>Islamic Periods (7th c CE - present):</strong> Sacred spring; 124+ medieval burials; Qajar rock relief</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Publications -->
+        <section id="publications" class="section">
+            <div class="section-header">
+                <h2>Publications & Reports</h2>
+                <p class="section-intro">
+                    Selected peer-reviewed publications, excavation reports, and research outputs. Full bibliography available in comprehensive research report. Note: Schmidt excavation final report (1934-1936) remains unpublished; ongoing publication project underway.
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Key Publications</h3>
+                <ul>
+                    <li><strong>Valipour, H.R. & Mostafapour, I.</strong> (2024). "Shahid Beheshti University Excavations at Cheshmeh Ali, Rey: First Season Report." Preliminary findings from October-November 2024 excavation season. [Comprehensive report forthcoming]</li>
+                    
+                    <li><strong>Shahid Beheshti University.</strong> (2024, November 19). "7,000-Year-Old Skeleton Discovered by Shahid Beheshti University Archaeologists." Official announcement of "Reydokht" discovery. Retrieved from https://en.sbu.ac.ir</li>
+                    
+                    <li><strong>Valipour, H.R.</strong> (2009). <em>Structures Study: Economic and Social Communities of Tehran Plain in Fifth and Fourth Millennium BC.</em> Doctoral dissertation, University of Tehran. [Foundation for current research program]</li>
+                    
+                    <li><strong>Miri, N.</strong> (2025). "Archaeological Heritage of Rayy: A Review of Archaeological Investigations in Rayy in the Early Decades of the 20th Century and the Fate of their Finds and Documents." <em>Journal for the History of Science</em>, Shahid Beheshti University. DOI: 10.22059/jihs.2025.403110.371843</li>
+                    
+                    <li><strong>Fazeli, H., Coningham, R.A.E., & Batt, C.M.</strong> (2004). "Cheshmeh-Ali Revisited: Towards an Absolute Dating of the Late Neolithic and Chalcolithic of Iran's Tehran Plain." <em>Iran: Journal of the British Institute of Persian Studies</em> 42: 13-23.</li>
+                    
+                    <li><strong>Gustavel, L.</strong> (2020). "The Burials at Cheshmeh Ali and Rayy: The Excavations of Erich Schmidt 1934-1936." <em>Field Notes: A Journal of Collegiate Anthropology</em> 1, Article 6. [UW Madison Digital Repository]</li>
+                    
+                    <li><strong>McCown, D.E.</strong> (1942). <em>The Comparative Stratigraphy of Early Iran.</em> Chicago: Oriental Institute. [Foundational three-horizon model: Sialk - Cheshmeh Ali - Hissar]</li>
+                    
+                    <li><strong>Voigt, M.M. & Dyson Jr., R.H.</strong> (1992). "The Chronology of Iran ca. 8000-2000 B.C." In: Ehrich, R.W. (ed.), <em>Chronologies in Old World Archaeology</em>, 3rd ed. Chicago: University of Chicago Press.</li>
+                    
+                    <li><strong>Anonymous [IAOS]</strong> (2008). "X-ray Fluorescence Analysis of Obsidian Artifacts from Cheshmeh Ali, Iran." <em>International Association of Obsidian Studies Bulletin.</em> [Geochemical provenance study]</li>
+                    
+                    <li><strong>Madjidzadeh, Y.</strong> (2001). "Les fouilles d'Ozbaki (Iran). Campagnes 1998-2000." <em>Paléorient</em> 27(1): 63-88. DOI: 10.3406/paleo.2001.4725</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Ongoing Publication Projects</h3>
+                <ul>
+                    <li><strong>Schmidt Excavation Final Report:</strong> Matney, T., Fazeli, H., Pittman, H., & Thornton, C. "The Schmidt Expedition to Cheshmeh Ali, Iran, 1934-1936: Final Site Report" [In progress; White Levy Foundation sponsored]</li>
+                    
+                    <li><strong>2024 Excavation Report:</strong> Valipour, H. & Mostafapour, I. Shahid Beheshti University excavations, October-November 2024 [Comprehensive report forthcoming]</li>
+                    
+                    <li><strong>"Reydokht" Analysis:</strong> Skeletal analysis, aDNA, isotopic studies pending RICHT authorization [Collaboration: Shahid Beheshti Univ, Tarbiat Modares Univ, international laboratories]</li>
+                </ul>
+            </div>
+
+            <div class="citation-box">
+                <strong>For Full Bibliography:</strong><br>
+                Cheshmeh Ali Archaeological Research Project. (2026). <em>Comprehensive Research Report: Cheshmeh Ali Archaeological Site.</em> 422 annotated sources. [Access via project repository]
+            </div>
+        </section>
+
+        <!-- Research Team -->
+        <section id="team" class="section">
+            <div class="section-header">
+                <h2>Research Team</h2>
+                <p class="section-intro">
+                    Archaeological research at Cheshmeh Ali involves collaboration between Iranian institutions, international universities, and specialized laboratories. The current excavation project (2024-2029) is led by Shahid Beheshti University's Archaeological Field Research Center under Professor Hamidreza Valipour, building on nearly a century of scholarly investigation.
+                </p>
+            </div>
+
+            <div class="highlight-box" style="margin-bottom: 3rem;">
+                <h3>Shahid Beheshti University Archaeological Field Research Center</h3>
+                <p><strong>Establishment:</strong> 2024, through tripartite agreement between Shahid Beheshti University, Research Institute of Cultural Heritage and Tourism (RICHT), and Cultural Heritage Directorate of Tehran Province</p>
+                <p><strong>Location:</strong> Building adjacent to Tappeh Mil, Rey, Tehran Province</p>
+                <p><strong>Mission:</strong> Five-year problem-oriented excavation program (2024-2029) to study cultural evolution from Neolithic through Chalcolithic periods on Tehran Plain</p>
+                <p><strong>Leadership:</strong> Professor Hamidreza Valipour (Director), Iman Mostafapour (Deputy Director)</p>
+                <p><strong>First Season:</strong> October 1 - November 20, 2024 (7 weeks)</p>
+                <p><strong>Key Achievement:</strong> First archaeological examination of Cheshmeh Ali in nearly three decades; discovery of "Reydokht" burial and extensive Sialk III architecture</p>
+                <p><strong>Collaboration:</strong> Faculty and graduate students from Department of Archaeology, with specialized analysis partnerships including Tarbiat Modares University (bioarchaeology), international laboratories (aDNA, isotopic studies)</p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Shahid Beheshti University Team (2024-Present)</h3>
+                        <p><strong>Project Director:</strong> Professor Hamidreza Valipour<br>
+                        Faculty of Literature and Humanities<br>
+                        Department of Archaeology<br>
+                        Shahid Beheshti University</p>
+                        <p><strong>Deputy Director:</strong> Iman Mostafapour<br>
+                        Shahid Beheshti University</p>
+                        <p><strong>Archaeological Team:</strong> Faculty and graduate students from Department of Archaeology including:</p>
+                        <ul style="list-style: none; padding: 0; font-size: 0.9rem;">
+                            <li>• Kourosh Mohammadkhani</li>
+                            <li>• Negar Miri</li>
+                            <li>• Kamyar Abdi</li>
+                            <li>• Amir Sadegh Naghshineh</li>
+                            <li>• Ali Bahadori</li>
+                        </ul>
+                        <p><strong>Site Management:</strong> Qadir Afrovand<br>
+                        Director, Rey National Heritage Base<br>
+                        Iranian Cultural Heritage Organization</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Historical Researchers</h3>
+                        <p><strong>Erich Friedrich Schmidt</strong> (1897-1964)<br>
+                        Principal excavator 1934-1936<br>
+                        Oriental Institute, UPenn Museum, Boston MFA</p>
+                        <p><strong>Donald E. McCown</strong> (1942)<br>
+                        Comparative stratigraphy; three-horizon model</p>
+                        <p><strong>Hassan Fazeli Nashli</strong> (1998-present)<br>
+                        University of Tehran; radiocarbon dating project</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Specialized Analysis</h3>
+                        <p><strong>Bioarchaeology:</strong> Hamed Vahdati Nassab<br>
+                        Tarbiat Modares University<br>
+                        "Reydokht" skeletal analysis</p>
+                        <p><strong>Burial Data:</strong> Lucy Gustavel<br>
+                        UW Madison<br>
+                        Schmidt materials compilation</p>
+                        <p><strong>Geochemistry:</strong> MURR Laboratory<br>
+                        University of Missouri<br>
+                        Obsidian sourcing analysis</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Institutional Partners</h3>
+                        <p><strong>Lead Institution (Current Project):</strong></p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• <strong>Shahid Beheshti University</strong></li>
+                            <li>&nbsp;&nbsp;- Archaeological Field Research Center</li>
+                            <li>&nbsp;&nbsp;- Department of Archaeology</li>
+                            <li>&nbsp;&nbsp;- Faculty of Literature and Humanities</li>
+                        </ul>
+                        <p><strong>Iranian Partner Institutions:</strong></p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• Research Institute of Cultural Heritage and Tourism (RICHT)</li>
+                            <li>• Cultural Heritage Directorate of Tehran Province</li>
+                            <li>• Rey National Heritage Base</li>
+                            <li>• Iranian Cultural Heritage Organization (ICHTO)</li>
+                            <li>• University of Tehran</li>
+                            <li>• Tarbiat Modares University (Bioarchaeology)</li>
+                            <li>• National Museum of Iran</li>
+                        </ul>
+                        <p><strong>International Partners:</strong></p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>• University of Bradford, UK (1998 project)</li>
+                            <li>• UPenn Museum, USA (Schmidt archives)</li>
+                            <li>• White Levy Foundation (publication project)</li>
+                            <li>• International laboratories (aDNA, isotopic analysis)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Placeholder -->
+        <section id="gallery" class="section">
+            <div class="section-header">
+                <h2>Multimedia Gallery</h2>
+                <p class="section-intro">
+                    Visual documentation of excavations, artifacts, and site context. Full image archive with metadata and copyright information available to qualified researchers.
+                </p>
+            </div>
+
+            <div class="notice">
+                <strong>Gallery Notice:</strong> High-resolution images, excavation plans, and sensitive archaeological data available upon request to qualified researchers. Public gallery displays select photographs with appropriate contextual information and proper attribution.
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://pplx-res.cloudinary.com/image/upload/v1770236073/search_images/6e637b1d6190d3b5a9a4c563b8899e61ba09bd46.jpg" alt="Historic view of Cheshmeh Ali with rugs">
+                    </div>
+                    <div class="card-content">
+                        <h3>Site Photography</h3>
+                        <p>Historical and contemporary photographs documenting excavations from Schmidt era (1934-1936) through 2024 season. Images include stratigraphic sections, architecture, and artifact contexts.</p>
+                        <button class="btn">Request Access</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://pplx-res.cloudinary.com/image/upload/v1770208843/search_images/95f0b1723eb055a6751ded5627e6f8d3f9b2da6f.jpg" alt="Cheshmeh Ali archaeological site overview">
+                    </div>
+                    <div class="card-content">
+                        <h3>Plans & Sections</h3>
+                        <p>Schematic site plans, trench layouts, and stratigraphic sections (non-sensitive data only). Detailed excavation plans available to researchers under data sharing agreement.</p>
+                        <button class="btn">Request Access</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://pplx-res.cloudinary.com/image/upload/v1770236062/search_images/c81ad49e236c72aef401ec56ce4d693823d3511a.jpg" alt="Cheshmeh Ali pottery with ibex motifs">
+                    </div>
+                    <div class="card-content">
+                        <h3>Artifact Collections</h3>
+                        <p>Cheshmeh Ali ware pottery, lithics, and material culture from museum collections: Metropolitan Museum, LACMA, British Museum, Oriental Institute Chicago, National Museum of Iran.</p>
+                        <button class="btn">View Collections</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="section">
+            <div class="section-header">
+                <h2>Contact & Collaboration</h2>
+                <p class="section-intro">
+                    For research inquiries, data access requests, and collaboration opportunities, please contact the project team through official channels.
+                </p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Research Inquiries</h3>
+                        <p><strong>Academic Collaboration:</strong><br>
+                        For research partnerships, data sharing agreements, and scholarly inquiries</p>
+                        <p><strong>Contact:</strong><br>
+                        Rey National Heritage Base<br>
+                        Iranian Cultural Heritage Organization (ICHTO)</p>
+                        <button class="btn">Submit Inquiry</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Data Access Requests</h3>
+                        <p>Qualified researchers may request access to:</p>
+                        <ul style="font-size: 0.9rem;">
+                            <li>Excavation databases</li>
+                            <li>Unpublished reports</li>
+                            <li>High-resolution imagery</li>
+                            <li>Artifact catalogs</li>
+                            <li>Stratigraphic records</li>
+                        </ul>
+                        <p style="margin-top: 1rem;"><strong>Requirements:</strong> Institutional affiliation, research proposal, ethical clearance</p>
+                        <button class="btn">Request Access</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Museum Collections</h3>
+                        <p><strong>Iranian Collections:</strong><br>
+                        National Museum of Iran<br>
+                        www.irannationalmuseum.ir</p>
+                        <p><strong>International Collections:</strong><br>
+                        UPenn Museum: www.penn.museum<br>
+                        Boston MFA: www.mfa.org<br>
+                        Oriental Institute: oi.uchicago.edu</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About This Platform</h4>
+                <p style="font-size: 0.9rem; line-height: 1.6;">Official research platform for documentation and dissemination of Cheshmeh Ali archaeological excavations. Scientifically rigorous, publicly understandable, internationally citable.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#about">About Cheshmeh Ali</a></li>
+                    <li><a href="#excavations">Excavation History</a></li>
+                    <li><a href="#findings">Research Findings</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#team">Research Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Comprehensive Research Report (PDF)</a></li>
+                    <li><a href="#">Annotated Bibliography (422 sources)</a></li>
+                    <li><a href="#">Chronological Timeline (CSV)</a></li>
+                    <li><a href="#">Museum Collections Database</a></li>
+                    <li><a href="#">Data Access Guidelines</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Institutional Partners</h4>
+                <ul>
+                    <li><a href="#">Shahid Beheshti University</a></li>
+                    <li><a href="#">Iranian Cultural Heritage Organization</a></li>
+                    <li><a href="#">National Museum of Iran</a></li>
+                    <li><a href="#">University of Tehran</a></li>
+                    <li><a href="#">Rey National Heritage Base</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Cheshmeh Ali Archaeological Research Project | All Rights Reserved</p>
+            <p style="margin-top: 0.5rem;">Data ownership and intellectual property rights protected under Iranian Cultural Heritage regulations | Site coordinates generalized for heritage protection</p>
+            <p style="margin-top: 0.5rem;">Research conducted in accordance with archaeological best practices and ethical standards</p>
+            <p style="margin-top: 0.5rem;">Website designed by Kian Mansouri Jamshidi</p>
+        </div>
+    </footer>
+
+    <script>
+        // Language data
+        const translations = {
+            en: {
+                headerTop: "Official Research Platform | چشمه علی | Cheshmeh Ali",
+                siteTitle: "Cheshmeh Ali Archaeological Research Project",
+                siteSubtitle: "Type Site | Transitional Chalcolithic | Iranian Central Plateau",
+                navAbout: "About",
+                navExcavations: "Excavations",
+                navFindings: "Findings",
+                navPublications: "Publications",
+                navTeam: "Team",
+                navGallery: "Gallery",
+                navContact: "Contact",
+                heroTitle: "8,000 Years of Human Settlement",
+                heroText: "Documenting the archaeological heritage of Cheshmeh Ali (چشمه علی), Rey, Tehran Province – from Late Neolithic villages to the Transitional Chalcolithic horizon that defines northern Iranian prehistory",
+                heroMeta: "35°36'37\"N, 51°26'59\"E | Shahr-e Rey, District 20, Tehran Province, Iran",
+                noticeTitle: "Research Notice:",
+                noticeText: "This platform presents verified archaeological data from three major excavation campaigns (1934-1936, 1998, 2024). Site coordinates are generalized for heritage protection. Restricted data access available to qualified researchers upon request.",
+                aboutTitle: "About Cheshmeh Ali",
+                aboutIntro: "Cheshmeh Ali (چشمه علی, \"Spring of Ali\") is one of the most significant prehistoric archaeological sites on the Iranian Plateau, with continuous and intermittent human occupation spanning approximately 8,000 years (c. 6000 BC to present). The site consists of a 7-meter-high mound covering 3.5 hectares adjacent to a permanent natural spring in the ancient city of Rey, approximately 6-14 km south of modern Tehran.",
+                card1Title: "Type Site Definition",
+                card1Text: "Cheshmeh Ali defines the Transitional Chalcolithic period (c. 5500-4800 BC) of the Iranian Central Plateau through its distinctive black-on-red painted pottery tradition distributed across northern Iran from Qazvin to Gorgan.",
+                card2Title: "Geographic Significance",
+                card2Text: "Located at the base of the Alborz mountain range, Cheshmeh Ali sits on ancient trade routes connecting Caspian coastal regions to the Central Iranian Plateau – part of what would become the Silk Road network.",
+                card3Title: "Sacred Spring",
+                card3Text: "The site's permanent natural spring has been the lifeblood of settlement for millennia, with continuous sacred associations from prehistoric water worship through Zoroastrian Anahita cult to Islamic veneration.",
+                card3Meta: "Cultural Continuity: 6000 BC - Present",
+                highlightTitle: "Research Significance",
+                excavationsTitle: "Excavation History",
+                excavationsIntro: "Three major excavation campaigns have investigated Cheshmeh Ali over nearly a century, each contributing crucial data to our understanding of Iranian prehistory. Despite the site's importance, significant publication gaps remain, particularly regarding the foundational Schmidt excavations of the 1930s.",
+                findingsTitle: "Research Findings",
+                findingsIntro: "Nearly a century of research has yielded remarkable insights into prehistoric Iranian societies, from Late Neolithic village life through the emergence of social complexity in the Transitional Chalcolithic. Material culture, architecture, and burial practices document 8,000 years of human adaptation and innovation.",
+                publicationsTitle: "Publications & Reports",
+                publicationsIntro: "Selected peer-reviewed publications, excavation reports, and research outputs. Full bibliography available in comprehensive research report. Note: Schmidt excavation final report (1934-1936) remains unpublished; ongoing publication project underway.",
+                teamTitle: "Research Team",
+                teamIntro: "Archaeological research at Cheshmeh Ali involves collaboration between Iranian institutions, international universities, and specialized laboratories. The project builds on nearly a century of scholarly investigation.",
+                galleryTitle: "Multimedia Gallery",
+                galleryIntro: "Visual documentation of excavations, artifacts, and site context. Full image archive with metadata and copyright information available to qualified researchers.",
+                contactTitle: "Contact & Collaboration",
+                contactIntro: "For research inquiries, data access requests, and collaboration opportunities, please contact the project team through official channels.",
+                footerAbout: "About This Platform",
+                footerAboutText: "Official research platform for documentation and dissemination of Cheshmeh Ali archaeological excavations. Scientifically rigorous, publicly understandable, internationally citable.",
+                footerQuickLinks: "Quick Links",
+                footerResources: "Resources",
+                footerPartners: "Institutional Partners"
+            },
+            fa: {
+                headerTop: "پلتفرم رسمی پژوهشی | چشمه علی | Cheshmeh Ali",
+                siteTitle: "پروژه پژوهشی باستان‌شناسی چشمه علی",
+                siteSubtitle: "محوطه شاخص | دوران مفرغ گذار | فلات مرکزی ایران",
+                navAbout: "درباره",
+                navExcavations: "کاوش‌ها",
+                navFindings: "یافته‌ها",
+                navPublications: "انتشارات",
+                navTeam: "تیم",
+                navGallery: "گالری",
+                navContact: "تماس",
+                heroTitle: "۸۰۰۰ سال سکونت انسانی",
+                heroText: "مستندسازی میراث باستان‌شناسی چشمه علی، ری، استان تهران – از روستاهای نوسنگی تا افق مفرغ گذار که تاریخ پیش از تاریخ شمال ایران را تعریف می‌کند",
+                heroMeta: "۳۵°۳۶'۳۷\" شمالی، ۵۱°۲۶'۵۹\" شرقی | شهر ری، منطقه ۲۰، استان تهران، ایران",
+                noticeTitle: "اطلاعیه پژوهشی:",
+                noticeText: "این پلتفرم داده‌های باستان‌شناسی تأیید شده از سه دوره کاوش عمده (۱۹۳۴-۱۹۳۶، ۱۹۹۸، ۲۰۲۴) را ارائه می‌دهد. مختصات دقیق محوطه برای حفاظت از میراث فرهنگی عمومی نشده است. دسترسی به داده‌های محدود برای پژوهشگران واجد شرایط با درخواست امکان‌پذیر است.",
+                aboutTitle: "درباره چشمه علی",
+                aboutIntro: "چشمه علی یکی از مهم‌ترین محوطه‌های باستان‌شناسی پیش از تاریخ فلات ایران است که سکونت مستمر و متناوب انسانی در آن حدود ۸۰۰۰ سال (حدود ۶۰۰۰ پیش از میلاد تا کنون) را شامل می‌شود. این محوطه شامل یک تپه ۷ متری به مساحت ۳.۵ هکتار در کنار یک چشمه طبیعی دائمی در شهر باستانی ری، در فاصله تقریبی ۶ تا ۱۴ کیلومتری جنوب تهران امروزی است.",
+                card1Title: "تعریف محوطه شاخص",
+                card1Text: "چشمه علی دوره مفرغ گذار (حدود ۵۵۰۰-۴۸۰۰ پیش از میلاد) فلات مرکزی ایران را از طریق سنت متمایز سفالینه‌های نقاشی‌شده سیاه روی قرمز که در سراسر شمال ایران از قزوین تا گرگان پراکنده است، تعریف می‌کند.",
+                card2Title: "اهمیت جغرافیایی",
+                card2Text: "چشمه علی در دامنه رشته کوه البرز بر روی مسیرهای تجاری باستانی که مناطق ساحلی دریای خزر را به فلات مرکزی ایران متصل می‌کرد – بخشی از آنچه بعدها شبکه جاده ابریشم شد – قرار دارد.",
+                card3Title: "چشمه مقدس",
+                card3Text: "چشمه طبیعی دائمی این محوطه برای هزاران سال منبع حیات سکونت بوده است، با پیوستگی مقدس از پرستش آب در دوران پیش از تاریخ تا فرقه آناهیتای زرتشتی و احترام اسلامی.",
+                card3Meta: "پیوستگی فرهنگی: ۶۰۰۰ پیش از میلاد - حال حاضر",
+                highlightTitle: "اهمیت پژوهشی",
+                excavationsTitle: "تاریخچه کاوش‌ها",
+                excavationsIntro: "سه دوره کاوش عمده چشمه علی را در طول یک قرن بررسی کرده‌اند که هر یک داده‌های حیاتی برای درک ما از پیش از تاریخ ایران ارائه کرده‌اند. با وجود اهمیت این محوطه، شکاف‌های قابل توجهی در انتشارات وجود دارد، به ویژه در مورد کاوش‌های بنیادین اشمیت در دهه ۱۹۳۰.",
+                findingsTitle: "یافته‌های پژوهشی",
+                findingsIntro: "نزدیک به یک قرن پژوهش بینش‌های قابل توجهی در مورد جوامع پیش از تاریخ ایران، از زندگی روستایی نوسنگی تا ظهور پیچیدگی اجتماعی در مفرغ گذار، به دست آورده است. فرهنگ مادی، معماری و رسوم تدفین ۸۰۰۰ سال سازگاری و نوآوری انسانی را مستند می‌کنند.",
+                publicationsTitle: "انتشارات و گزارش‌ها",
+                publicationsIntro: "انتشارات همتا-بررسی شده منتخب، گزارش‌های کاوش و خروجی‌های پژوهشی. کتابنامه کامل در گزارش جامع پژوهشی در دسترس است. توجه: گزارش نهایی کاوش اشمیت (۱۹۳۴-۱۹۳۶) هنوز منتشر نشده است؛ پروژه انتشار در جریان است.",
+                teamTitle: "تیم پژوهشی",
+                teamIntro: "پژوهش باستان‌شناسی در چشمه علی شامل همکاری بین مؤسسات ایرانی، دانشگاه‌های بین‌المللی و آزمایشگاه‌های تخصصی است. این پروژه بر پایه نزدیک به یک قرن تحقیق علمی استوار است.",
+                galleryTitle: "گالری چندرسانه‌ای",
+                galleryIntro: "مستندسازی بصری کاوش‌ها، مصنوعات و بافت محوطه. آرشیو تصویر کامل با فراداده و اطلاعات حق نسخه‌برداری برای پژوهشگران واجد شرایط در دسترس است.",
+                contactTitle: "تماس و همکاری",
+                contactIntro: "برای پرس‌وجوهای پژوهشی، درخواست‌های دسترسی به داده‌ها و فرصت‌های همکاری، لطفاً از طریق کانال‌های رسمی با تیم پروژه تماس بگیرید.",
+                footerAbout: "درباره این پلتفرم",
+                footerAboutText: "پلتفرم رسمی پژوهشی برای مستندسازی و انتشار کاوش‌های باستان‌شناسی چشمه علی. دقیق از نظر علمی، قابل فهم برای عموم، قابل استناد در سطح بین‌المللی.",
+                footerQuickLinks: "پیوندهای سریع",
+                footerResources: "منابع",
+                footerPartners: "شرکای نهادی"
+            }
+        };
+
+        // Language switching
+        let currentLang = 'en';
+        
+        function switchLanguage(lang) {
+            currentLang = lang;
+            const body = document.querySelector('body');
+            const html = document.querySelector('html');
+            
+            if (lang === 'fa') {
+                body.setAttribute('dir', 'rtl');
+                html.setAttribute('dir', 'rtl');
+                html.setAttribute('lang', 'fa');
+            } else {
+                body.setAttribute('dir', 'ltr');
+                html.setAttribute('dir', 'ltr');
+                html.setAttribute('lang', 'en');
+            }
+            
+            updateContent(lang);
+            
+            // Update active language button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+        
+        function updateContent(lang) {
+            const t = translations[lang];
+            
+            // Header
+            document.querySelector('.header-top > div:first-child').textContent = t.headerTop;
+            document.querySelector('.site-title-text h1').textContent = t.siteTitle;
+            document.querySelector('.site-subtitle').textContent = t.siteSubtitle;
+            
+            // Navigation
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks[0].textContent = t.navAbout;
+            navLinks[1].textContent = t.navExcavations;
+            navLinks[2].textContent = t.navFindings;
+            navLinks[3].textContent = t.navPublications;
+            navLinks[4].textContent = t.navTeam;
+            navLinks[5].textContent = t.navGallery;
+            navLinks[6].textContent = t.navContact;
+            
+            // Hero
+            document.querySelector('.hero h2').textContent = t.heroTitle;
+            document.querySelector('.hero p').textContent = t.heroText;
+            document.querySelector('.hero-meta').textContent = t.heroMeta;
+            
+            // Notice
+            document.querySelector('.notice strong').textContent = t.noticeTitle;
+            document.querySelector('.notice').childNodes[2].textContent = ' ' + t.noticeText;
+            
+            // About Section
+            document.querySelector('#about h2').textContent = t.aboutTitle;
+            document.querySelector('#about .section-intro').textContent = t.aboutIntro;
+            
+            const aboutCards = document.querySelectorAll('#about .card');
+            aboutCards[0].querySelector('h3').textContent = t.card1Title;
+            aboutCards[0].querySelector('p').textContent = t.card1Text;
+            aboutCards[1].querySelector('h3').textContent = t.card2Title;
+            aboutCards[1].querySelector('p').textContent = t.card2Text;
+            aboutCards[2].querySelector('h3').textContent = t.card3Title;
+            aboutCards[2].querySelector('p').textContent = t.card3Text;
+            aboutCards[2].querySelector('.card-meta').textContent = t.card3Meta;
+            
+            document.querySelector('#about .highlight-box h3').textContent = t.highlightTitle;
+            
+            // Section Titles
+            document.querySelector('#excavations h2').textContent = t.excavationsTitle;
+            document.querySelector('#excavations .section-intro').textContent = t.excavationsIntro;
+            document.querySelector('#findings h2').textContent = t.findingsTitle;
+            document.querySelector('#findings .section-intro').textContent = t.findingsIntro;
+            document.querySelector('#publications h2').textContent = t.publicationsTitle;
+            document.querySelector('#publications .section-intro').textContent = t.publicationsIntro;
+            document.querySelector('#team h2').textContent = t.teamTitle;
+            document.querySelector('#team .section-intro').textContent = t.teamIntro;
+            document.querySelector('#gallery h2').textContent = t.galleryTitle;
+            document.querySelector('#gallery .section-intro').textContent = t.galleryIntro;
+            document.querySelector('#contact h2').textContent = t.contactTitle;
+            document.querySelector('#contact .section-intro').textContent = t.contactIntro;
+            
+            // Footer
+            const footerSections = document.querySelectorAll('.footer-section');
+            footerSections[0].querySelector('h4').textContent = t.footerAbout;
+            footerSections[0].querySelector('p').textContent = t.footerAboutText;
+            footerSections[1].querySelector('h4').textContent = t.footerQuickLinks;
+            footerSections[2].querySelector('h4').textContent = t.footerResources;
+            footerSections[3].querySelector('h4').textContent = t.footerPartners;
+        }
+        
+        // Language button listeners
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                switchLanguage(this.dataset.lang);
+            });
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+
+                // Close mobile menu after click
+                document.getElementById('mainNav').classList.remove('active');
+
+                // Update active link
+                document.querySelectorAll('nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Intersection Observer for active nav link
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('nav a');
+
+        const observerOptions = {
+            rootMargin: '-50% 0px -50% 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>
