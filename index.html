@@ -35,6 +35,13 @@
             line-height: 1.7;
             color: var(--color-text);
             background: var(--color-cream-light);
+            /* FIX 1: Add transition for potential menu overlay change */
+            transition: background-color 0.3s;
+        }
+
+        /* FIX 2: Add class to body to prevent scrolling when menu is open */
+        body.menu-open {
+            overflow: hidden;
         }
 
         /* Header */
@@ -76,7 +83,7 @@
             text-decoration: underline;
         }
 
-        /* RTL Support */
+        /* RTL Support (Kept original structure) */
         html[dir="rtl"] body {
             font-family: 'Vazirmatn', 'Tahoma', sans-serif;
         }
@@ -122,32 +129,16 @@
             right: 50%;
         }
 
-        @media (max-width: 768px) {
-            html[dir="rtl"] .timeline::before {
-                right: 20px;
-                left: auto;
-            }
-
-            html[dir="rtl"] .timeline-dot {
-                right: 20px;
-                left: auto;
-            }
-
-            html[dir="rtl"] .timeline-item,
-            html[dir="rtl"] .timeline-item:nth-child(even) {
-                padding-right: 50px;
-                padding-left: 0;
-                flex-direction: column;
-            }
-        }
-
+        /* NOTE: The mobile RTL rules are now in the @media (max-width: 768px) block below to avoid duplication. */
+        /* FIX 3: Update padding and add position: relative to header-main */
         .header-main {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0.75rem 2rem;
+            padding: 1rem 2rem; /* Changed from 0.75rem */
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative; /* Added for mobile nav absolute positioning context */
         }
 
         .site-title {
@@ -168,6 +159,8 @@
             font-size: 2rem;
             color: var(--color-cream-light);
             font-weight: bold;
+            /* FIX: Added flex-shrink to prevent it from squishing */
+            flex-shrink: 0; 
         }
 
         .site-title-text h1 {
@@ -559,51 +552,104 @@
             color: var(--color-ochre-dark);
         }
 
-        /* Navigation Menu Toggle for Mobile */
+        /* FIX 4: REDESIGNED MOBILE NAVIGATION STYLES (Replaced old .menu-toggle and mobile nav logic) */
         .menu-toggle {
-            display: none;
+            display: none; /* Hidden on desktop */
+            width: 30px;
+            height: 22px;
+            position: relative;
+            cursor: pointer;
             background: none;
             border: none;
-            font-size: 2rem;
-            color: var(--color-stone-dark);
-            cursor: pointer;
+            z-index: 1010; /* Above header content */
         }
 
+        .menu-toggle span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: var(--color-stone-dark);
+            border-radius: 3px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+
+        .menu-toggle span:nth-child(1) { top: 0px; }
+        .menu-toggle span:nth-child(2) { top: 9px; }
+        .menu-toggle span:nth-child(3) { top: 18px; }
+
+        .menu-toggle.active span:nth-child(1) {
+            top: 9px;
+            transform: rotate(135deg);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+            left: -30px;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            top: 9px;
+            transform: rotate(-135deg);
+        }
+        /* END FIX 4: REDESIGNED MOBILE NAVIGATION STYLES */
+
         @media (max-width: 992px) {
+            /* Kept the original block, but updated with the new responsive styles */
             .menu-toggle {
                 display: block;
             }
 
-            html[dir="ltr"] .menu-toggle {
-                margin-left: auto;
+            /* REMOVED: original RTL margin rule on .menu-toggle, as the button is now flex-aligned. */
+
+            /* FIX 5: New responsive header styles */
+            .header-main {
+                padding: 0.75rem 1.5rem;
             }
 
-            html[dir="rtl"] .menu-toggle {
-                margin-right: auto;
+            .site-logo {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5rem;
             }
+            .site-title {
+                gap: 1rem;
+            }
+            .site-title-text h1 {
+                font-size: 1.1rem;
+            }
+            .site-subtitle {
+                display: none; /* Hides subtitle on mobile */
+            }
+            /* END FIX 5 */
             
             nav {
-                display: none;
+                /* REPLACED OLD BLOCK with new animation/visibility logic */
                 position: absolute;
                 top: 100%;
                 left: 0;
-                right: 0;
+                /* Removed 'right: 0;' and 'width: 100%' since they are redundant with 'left: 0' and block display */
                 width: 100%;
                 background: var(--color-cream);
                 border-top: 1px solid var(--color-border);
                 flex-direction: column;
-                gap: 0;
+                gap: 0; /* Kept from old code */
                 padding: 0.5rem 0;
                 box-shadow: var(--shadow-sm);
+                
+                /* Animation improvements: */
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height 0.3s ease-out;
+                visibility: hidden; /* Added for smoother visual close */
+                transition: max-height 0.35s ease-out, visibility 0.35s ease-out; /* Updated transition properties */
                 z-index: 999;
             }
 
             nav a {
-                padding: 0.8rem 2rem;
-                border-bottom: 1px solid rgba(0,0,0,0.03);
+                /* Updated padding/border for better mobile look */
+                padding: 1rem 1.5rem;
+                border-bottom: 1px solid var(--color-border);
                 width: 100%;
                 text-align: left;
             }
@@ -612,25 +658,20 @@
                 text-align: right;
             }
             
+            /* New: ensures last link doesn't have a bottom border */
+            nav a:last-child {
+                border-bottom: none;
+            }
+            
             nav.active {
-                display: flex;
-                max-height: 300px;
+                /* REPLACED OLD BLOCK with new animation properties */
+                display: flex; /* Keep display:flex */
+                max-height: 500px; /* Generous height for animation */
+                visibility: visible;
+                transition: max-height 0.35s ease-in, visibility 0s;
             }
             
-            .header-main {
-                flex-wrap: wrap;
-                position: relative;
-            }
-            
-            .site-title {
-                flex-basis: 100%;
-                justify-content: center;
-                margin-bottom: 1rem;
-                text-align: center;
-            }
-
-            .site-title-text h1 { font-size: 1.2rem; }
-            .site-title-text .site-subtitle { font-size: 0.8rem; }
+            /* REMOVED: old .header-main and .site-title overrides which are replaced by FIX 5 */
             
             nav {
                 flex-basis: 100%;
@@ -663,6 +704,25 @@
             .cards-grid {
                 grid-template-columns: 1fr;
             }
+
+            /* Re-add RTL overrides for timeline for this media query */
+            html[dir="rtl"] .timeline::before {
+                right: 20px;
+                left: auto;
+            }
+
+            html[dir="rtl"] .timeline-dot {
+                right: 20px;
+                left: auto;
+            }
+
+            html[dir="rtl"] .timeline-item,
+            html[dir="rtl"] .timeline-item:nth-child(even) {
+                padding-right: 50px;
+                padding-left: 0;
+                flex-direction: column;
+            }
+            /* End RTL overrides */
         }
 
     </style>
@@ -685,7 +745,13 @@
                     <div class="site-subtitle" data-translate-key="siteSubtitle">Type Site | Transitional Chalcolithic | Iranian Central Plateau</div>
                 </div>
             </a>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <!-- FIX 6: Replaced old button with new hamburger button structure -->
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <!-- END FIX 6 -->
             <nav id="mainNav">
                 <a href="#about" class="active" data-translate-key="navAbout">About</a>
                 <a href="#excavations" data-translate-key="navExcavations">Excavations</a>
@@ -1072,7 +1138,7 @@
     </footer>
 
     <script>
-        // --- 1. DEFINE ALL TRANSLATIONS ---
+        // --- 1. DEFINE ALL TRANSLATIONS (KEPT ORIGINAL) ---
         const translations = {
             en: {
                 // Header & Nav
@@ -1310,7 +1376,7 @@
                 findingCard4Title: "رسوم تدفین و زیست‌باستان‌شناسی",
                 findingCard4Sch: "<strong>گورهای کاوش اشمیت:</strong> مجموعاً ۱۷۳ گور (۳۲ گور پیش‌ازتاریخ، ۱۲۴+ اسلامی)؛ گردآوری داده‌ها در جریان است (گوستاول ۲۰۲۰).",
                 findingCard4Disc: "<strong>کشف «ری‌دخت» (۲۰۲۴):</strong> اسکلت زنی جوان به‌صورت خمیده، متعلق به حدود ۴۳۰۰-۴۰۰۰ پ.م. در لایه معماری سیلک III.",
-                findingCard4Anal: "<strong>تحلیل‌های در دست اقدام:</strong> DNA باستانی، مطالعات ایزوتوپی (رژیم غذایی، تحرک)، تاریخ‌گذاری رادیوکربن.",
+                findingCard4Anal: "<strong>تحلیل‌های در دست اقدام:</strong> DNA باستانی، مطالعات ایزوتوپی (رژیم غذایی و تحرک)، تاریخ‌گذاری رادیوکربن.",
                 findingCard4Meta: "تحلیل توسط حامد وحدتی‌نسب، دانشگاه تربیت مدرس",
                 chronoTitle: "چارچوب گاه‌نگاری",
                 chrono1: "<strong>نوسنگی پایانی (۶۲۰۰-۵۵۰۰ پ.م.):</strong> سفال‌های با شاموت گیاهی؛ نخستین استقرار یکجانشینی.",
@@ -1378,17 +1444,23 @@
             }
         };
 
-        // --- 2. DEFINE CORE FUNCTIONS ---
+        // --- 2. DEFINE CORE FUNCTIONS (UPDATED) ---
 
         /**
-         * Toggles the mobile navigation menu.
+         * FIX 7: Toggles the mobile navigation menu (Now handles button and body state)
          */
         function toggleMenu() {
-            document.getElementById('mainNav').classList.toggle('active');
+            const nav = document.getElementById('mainNav');
+            const toggle = document.querySelector('.menu-toggle');
+            const body = document.body;
+
+            nav.classList.toggle('active');
+            toggle.classList.toggle('active');
+            body.classList.toggle('menu-open');
         }
 
         /**
-         * Applies the selected language to the page.
+         * Applies the selected language to the page. (Kept original)
          * @param {string} lang - The language to apply ('en' or 'fa').
          */
         function setLanguage(lang) {
@@ -1422,7 +1494,7 @@
             localStorage.setItem('preferredLanguage', lang);
         }
 
-        // --- 3. ADD EVENT LISTENERS AND INITIALIZE ---
+        // --- 3. ADD EVENT LISTENERS AND INITIALIZE (UPDATED) ---
 
         document.addEventListener('DOMContentLoaded', () => {
             // Language Switcher Initialization
@@ -1437,21 +1509,25 @@
             const savedLang = localStorage.getItem('preferredLanguage') || 'en';
             setLanguage(savedLang);
 
-            // Smooth Scrolling and Active Nav Link on Click
+            // FIX 8: Smooth Scrolling and Active Nav Link on Click (Updated menu close logic)
             document.querySelectorAll('nav a, a.site-title, .footer-section a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
+                    
                     if (targetElement) {
                         targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        // Close mobile menu after click
-                        document.getElementById('mainNav').classList.remove('active');
+                    }
+                    
+                    // Close mobile menu if it's open after a click
+                    if (document.body.classList.contains('menu-open')) {
+                        toggleMenu(); // Use the new toggleMenu function to clean up all classes (nav, toggle, body)
                     }
                 });
             });
 
-            // Active Nav Link on Scroll
+            // Active Nav Link on Scroll (Kept original)
             const sections = document.querySelectorAll('.section');
             const navLinks = document.querySelectorAll('nav a');
             const observer = new IntersectionObserver(entries => {
